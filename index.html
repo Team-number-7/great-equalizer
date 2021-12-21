@@ -5,20 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hello</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
-        <div class="username"></div>
-        <div class="header__settings"></div>
+        <span class="header__logo">
+            <img class="header__logo-img" src="cashimg.jpg" alt="logo with image of dollars">
+        </span>
+        <button class="header__settings">S</button>
     </header>
     <main class="main">
         <form class="form">
             <input class="form__input-date" type="date">
             <input class="form__input-text" type="text">
-            <input class="form__input-number" type="number">
+            <input class="form__input-number" type="number" min="0">
             <input class="form__input-submit" type="submit" value="Add">
         </form>
-        <span></span>
+        <ul class="spendlist">
+            <li class="spendlist__item">
+                <span class="spendlist__item-date">21.12.2021</span> 
+                <span class="spendlist__item-text">доставка</span>
+                <span class="spendlist__item-number">588</span>
+            </li>
+            <li class="spendlist__item">
+                <span class="spendlist__item-date">21.12.2021</span> 
+                <span class="spendlist__item-text">доставка</span>
+                <span class="spendlist__item-number">588</span>
+            </li> 
+            <li class="spendlist__item">
+                <span class="spendlist__item-date">21.12.2021</span> 
+                <span class="spendlist__item-text">доставка</span>
+                <span class="spendlist__item-number">588</span>
+            </li> 
+            <li class="spendlist__item">
+                <span class="spendlist__item-date">21.12.2021</span> 
+                <span class="spendlist__item-text">доставка</span>
+                <span class="spendlist__item-number">588</span>
+            </li> 
+            <li class="spendlist__item">
+                <span class="spendlist__item-date">21.12.2021</span> 
+                <span class="spendlist__item-text">доставка</span>
+                <span class="spendlist__item-number">588</span>
+            </li>          
+        </ul>
     </main>
 </body>
 </html>

@@ -1,0 +1,11 @@
+.header{
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo-img{
+    max-width: 400px;
+    max-height: 80px;
+} 
+
