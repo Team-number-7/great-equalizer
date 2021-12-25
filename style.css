@@ -1,11 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+
 .header{
-    background-color: aquamarine;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 100px;
+    line-height: 0;
+    background-color: aquamarine;
 }
 
 .header__logo-img{
     max-width: 400px;
     max-height: 80px;
 } 
+
+.header__settings{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+
+
+
 
