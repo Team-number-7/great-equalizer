@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background: rgb(170, 228, 221);;
+
+}
 
 .header{
     display: flex;
@@ -22,9 +26,10 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    background-image: url("gear.png");
+    background-size: 45px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0;
+    background-color: aquamarine;
 }
-
-
-
-
-
