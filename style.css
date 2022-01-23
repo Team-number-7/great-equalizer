@@ -3,16 +3,18 @@
 }
 
 body {
-    background: rgb(170, 228, 221);
+    background: rgb(176, 190, 197);
     font-family: 'Roboto', arial, sans-serif;
 }
 
 .header{
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     height: 100px;
+    width: 100%;
     line-height: 0;
     background-color: rgb(128, 142, 149);
 }
@@ -42,4 +44,12 @@ body {
     background-repeat: no-repeat;
     border: 0;
     background-color: rgb(174, 213,129);
+}
+.main{
+    width: 85%;
+    height: 100vh;
+    padding-top: 100px;
+    margin: 0 auto;
+    background-color: rgb(243, 243, 243);
+    
 }
