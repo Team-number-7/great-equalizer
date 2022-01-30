@@ -56,7 +56,7 @@ body {
 .form {
     display: flex;
     align-items: center;
-    margin: 38px auto 0;
+    margin: 38px auto 25px;
     justify-content: start;
     padding-left: 30px;
     width: 94%;
@@ -96,4 +96,28 @@ body {
     border-radius: 15px;
     background-color: rgb(174,213,129);
     padding: 0 15px;
+}
+
+.dates{
+    width: 94%;
+    margin: 0 auto;
+    background-color: rgb(234,234,234);
+    list-style: none;
+}
+
+.dates__date{
+    margin-left: 50px;
+}
+.dates__details{
+    width: 92%;
+    list-style: none;
+    padding-left: 0;
+}
+
+.dates__transaction{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px;
+    background-color: rgb(225,255,177);
+    margin: 14px auto;
 }
