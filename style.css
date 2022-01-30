@@ -60,20 +60,40 @@ body {
     justify-content: start;
     padding-left: 30px;
     width: 94%;
-    height: 97px;
+    height: 70px;
     border-radius: 20px;
     background-color: rgb(226, 241, 248);
     color:rgb(148, 148, 148);
 }
 
-.form__input-group{
+.form__input {
+    margin-right: 27px;
+    height: 40px;
+    border: 0;
+    border-radius: 15px;
+    padding: 0 15px;
+}
+
+.form__input:focus-visible {
+    outline: rgb(174,213,129) solid 1px;
+}
+
+.form__input:last-child {
+    margin-right: 0;
+}
+
+.form__input_short {
+    width: 5em;
+}
+
+.form__input-group {
     margin-right: 74px;
 }
 
-.form__input-group:nth-child(n){
-    margin-right: 27px;
-}
-
-.form__input-number {
-    width: 5em;
+.form__input-submit {
+    height: 30px;
+    border: 0;
+    border-radius: 15px;
+    background-color: rgb(174,213,129);
+    padding: 0 15px;
 }
