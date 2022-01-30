@@ -32,7 +32,7 @@ body {
     border-radius: 40px;
     background-color: rgb(174, 213,129);
     color:rgb(148, 148, 148);
-    } 
+} 
 
 .header__settings{
     height: 40px;
@@ -51,5 +51,29 @@ body {
     padding-top: 100px;
     margin: 0 auto;
     background-color: rgb(243, 243, 243);
-    
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    margin: 38px auto 0;
+    justify-content: start;
+    padding-left: 30px;
+    width: 94%;
+    height: 97px;
+    border-radius: 20px;
+    background-color: rgb(226, 241, 248);
+    color:rgb(148, 148, 148);
+}
+
+.form__input-group{
+    margin-right: 74px;
+}
+
+.form__input-group:nth-child(n){
+    margin-right: 27px;
+}
+
+.form__input-number {
+    width: 5em;
 }
