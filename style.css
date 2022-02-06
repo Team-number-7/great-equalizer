@@ -47,7 +47,7 @@ body {
 }
 .main{
     width: 85%;
-    height: 100vh;
+    height: 100%;
     padding-top: 100px;
     margin: 0 auto;
     background-color: rgb(243, 243, 243);
