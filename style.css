@@ -138,19 +138,25 @@ body {
         height: calc(100vh - 100px);
         border-radius: 0;
         margin: 0;
-        
+        flex-direction: column;
+        justify-content: center;
+
     }
     
-    .form__input-group {
-        display: block;
-    }
-
     .form__input {
         display: block;
+        width: 100%;
+        margin-bottom: 15px ;
+    }
+    .form__input:last-child {
+        margin-bottom: 0;
     }
 
+    .form__input-group {
+        margin: 0;
+    }
     .form__input-submit {
-        display: block;
+        margin-top: 65px;
     }
-
+    
 }
