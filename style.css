@@ -108,9 +108,14 @@ body {
     background-color: rgb(234,234,234);
     list-style: none;
 }
-
+.dates__day{
+    margin-bottom: 40px;
+}
+.dates__day:last-child {
+    margin-bottom: 0;
+}
 .dates__date{
-    margin-left: 50px;
+    margin-left: 50px; 
 }
 .dates__details{
     width: 92%;
