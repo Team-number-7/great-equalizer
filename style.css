@@ -47,6 +47,7 @@ body {
 }
 .main{
     width: 85%;
+    min-height: 100vh;
     height: 100%;
     padding-top: 100px;
     margin: 0 auto;
@@ -101,6 +102,8 @@ body {
 .dates{
     width: 94%;
     margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
     background-color: rgb(234,234,234);
     list-style: none;
 }
@@ -118,6 +121,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 5px 50px;
+    border-radius: 10px;
     background-color: rgb(225,255,177);
     margin: 14px auto;
 }
