@@ -99,6 +99,7 @@ body {
     padding: 0 15px;
 }
 
+
 .dates{
     width: 94%;
     margin: 0 auto;
@@ -124,4 +125,32 @@ body {
     border-radius: 10px;
     background-color: rgb(225,255,177);
     margin: 14px auto;
+}
+
+@media (max-width: 902px) {
+    .main {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .form {
+        width: 100%;
+        height: calc(100vh - 100px);
+        border-radius: 0;
+        margin: 0;
+        
+    }
+    
+    .form__input-group {
+        display: block;
+    }
+
+    .form__input {
+        display: block;
+    }
+
+    .form__input-submit {
+        display: block;
+    }
+
 }
