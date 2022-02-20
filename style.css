@@ -118,7 +118,6 @@ body {
     margin-left: 50px; 
 }
 .dates__details{
-    width: 92%;
     list-style: none;
     padding-left: 0;
 }
@@ -132,7 +131,7 @@ body {
     margin: 14px auto;
 }
 
-@media (max-width: 902px) {
+@media (max-width: 1028px) {
     .main {
         width: 100%;
         height: 100vh;
