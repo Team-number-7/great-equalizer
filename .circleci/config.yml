@@ -49,5 +49,5 @@ workflows:
       - gh-pages/deploy:
           requires:
             - build-and-test
-          ssh-fingerprints: <fingerprint>
+          ssh-fingerprints: a9:68:3e:f8:ab:3b:27:96:fb:58:2a:37:43:ef:01:f1
 
