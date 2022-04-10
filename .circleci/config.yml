@@ -48,6 +48,6 @@ workflows:
                 - master
       - gh-pages/deploy:
           requires:
-            - build
+            - build-and-test
           ssh-fingerprints: <fingerprint>
 
