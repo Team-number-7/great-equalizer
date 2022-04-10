@@ -35,7 +35,7 @@ jobs:
           command: npm run build
       - gh-pages/deploy:
           setup-git: true
-          ssh-fingerprints: a9:68:3e:f8:ab:3b:27:96:fb:58:2a:37:43:ef:01:f1
+          ssh-fingerprints: e0:11:27:8e:64:fa:26:0a:ee:cf:cd:61:0c:0c:44:81
 
 workflows:
   # Below is the definition of your workflow.
@@ -49,4 +49,3 @@ workflows:
             branches:
               only:
                 - master
-                
