@@ -46,4 +46,8 @@ workflows:
             branches:
               only:
                 - master
+      - gh-pages/deploy:
+          requires:
+            - build
+          ssh-fingerprints: <fingerprint>
 
