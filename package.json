@@ -17,7 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npm run stylelint && npm run eslint",
     "stylelint": "npx stylelint \"**/*.css\"",
-    "build": "tsc",
+    "copy": "cp index.html dist/ && cp style.css dist/ && cp img dist/",
+    "build": "tsc && npm run copy",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix"
   },
