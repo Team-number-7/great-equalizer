@@ -1,7 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   plugins: [new MiniCssExtractPlugin()],
   entry: './index.ts',
   devtool: 'inline-source-map',
@@ -24,5 +26,10 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
   },
 };
