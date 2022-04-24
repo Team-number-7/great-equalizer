@@ -5,10 +5,12 @@ jest.mock('./featureToggle');
 
 test('test onload', () => {
   // Arrange
-
+  const expectedFeatures = {
+    isUserName: false,
+  };
   // Act
   onload();
 
   // Assert
-  expect(mockFeatureToggle).toBeCalled();
+  expect(mockFeatureToggle).toBeCalledWith(expectedFeatures);
 });
