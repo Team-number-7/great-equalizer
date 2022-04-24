@@ -11,6 +11,9 @@ module.exports = {
   })],
   entry: './src/index.ts',
   devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
   module: {
     rules: [
       {

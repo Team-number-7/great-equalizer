@@ -1,7 +1,7 @@
 import './normalize.css';
 import './style.css';
 
-const isUserName = false;
+const isUserName = true;
 
 window.onload = function featureToggle() {
   if (!isUserName) {
