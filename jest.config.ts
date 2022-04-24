@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
@@ -6,7 +8,7 @@
 export default {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    },
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -34,7 +36,7 @@ export default {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
