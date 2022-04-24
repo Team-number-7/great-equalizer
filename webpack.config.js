@@ -1,11 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  plugins: [new MiniCssExtractPlugin()],
-  entry: './index.ts',
+  plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin({
+    title: 'Custom template using Handlebars',
+    template: 'src/index.ejs'
+  })],
+  entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
     rules: [
