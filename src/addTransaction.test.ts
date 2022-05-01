@@ -26,7 +26,7 @@ test('test addTransaction', () => {
 
   const expectedSelector = '#transaction';
   const expectedPosition = 'afterbegin';
-  const expectedText = `<div class="dates__date">${expectedDate.toDateString()}</div><ul class="dates__details"><li class="dates__transaction"><span class="dates__transaction-text">${expectedName}</span><span class="dates__transaction-number">${expectedValue}</span></li></ul>`;
+  const expectedText = `<div class="dates__date" data-cy="date">${expectedDate.toDateString()}</div><ul class="dates__details"><li class="dates__transaction"><span class="dates__transaction-text" data-cy="name">${expectedName}</span><span class="dates__transaction-number" data-cy="value">${expectedValue}</span></li></ul>`;
 
   // Act
   addTransaction(expectedTransaction);
