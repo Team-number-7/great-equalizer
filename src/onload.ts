@@ -1,3 +1,4 @@
+import addButtonEventListener from './addButtonEventListener';
 import featureToggle, { Features } from './featureToggle';
 
 export default function onload(): void {
@@ -5,4 +6,5 @@ export default function onload(): void {
     isUserName: true,
   };
   featureToggle(features);
+  addButtonEventListener();
 }

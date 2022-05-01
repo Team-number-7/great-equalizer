@@ -19,14 +19,14 @@
     <main class="main">
         <form class="form">
             <span class="form__input-group">
-                <input class="form__input" type="date" placeholder="Date">
-                <input class="form__input" type="text" placeholder="Transaction Name">
-                <input class="form__input form__input_short" type="number" min="0" placeholder="Sum">
+                <input id="date" class="form__input" type="date" placeholder="Date">
+                <input id="name" class="form__input" type="text" placeholder="Transaction Name">
+                <input id="value" class="form__input form__input_short" type="number" min="0" placeholder="Sum">
             </span>
-            <input class="form__input-submit" type="submit" value="Add">
+            <input id="add" class="form__input-submit" type="button" value="Add">
         </form>
         <ul class="dates">
-            <li class="dates__day">
+            <li id="transaction" class="dates__day">
                 <div class="dates__date">27.12.2021</div>
                 <ul class="dates__details">
                     <li class="dates__transaction">
