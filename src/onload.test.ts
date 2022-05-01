@@ -6,7 +6,7 @@ jest.mock('./featureToggle');
 test('test onload', () => {
   // Arrange
   const expectedFeatures: Features = {
-    isUserName: false,
+    isUserName: true,
   };
   // Act
   onload();
