@@ -1,11 +1,11 @@
 import onload from './onload';
-import mockFeatureToggle from './featureToggle';
+import mockFeatureToggle, { Features } from './featureToggle';
 
 jest.mock('./featureToggle');
 
 test('test onload', () => {
   // Arrange
-  const expectedFeatures = {
+  const expectedFeatures: Features = {
     isUserName: false,
   };
   // Act

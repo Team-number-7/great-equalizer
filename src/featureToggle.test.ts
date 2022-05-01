@@ -1,4 +1,4 @@
-import featureToggle from './featureToggle';
+import featureToggle, { Features } from './featureToggle';
 import { document } from './globals/document';
 
 const mockSetAttribute = jest.fn();
@@ -13,7 +13,7 @@ jest.mock('./globals/document', () => ({
 
 test('featureToggle test', () => {
   // Arrange
-  const expectedFeatures = {
+  const expectedFeatures: Features = {
     isUserName: false,
   };
   const expectedId = 'header__logo';

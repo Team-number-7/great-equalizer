@@ -1,8 +1,8 @@
-import featureToggle from './featureToggle';
+import featureToggle, { Features } from './featureToggle';
 
-export default function onload() {
-  const features = {
-    isUserName: false,
+export default function onload(): void {
+  const features: Features = {
+    isUserName: true,
   };
   featureToggle(features);
 }
