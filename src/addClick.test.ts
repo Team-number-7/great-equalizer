@@ -1,6 +1,7 @@
-import mockAddTransaction, { Transaction } from './addTransaction';
+import mockAddTransaction from './addTransaction';
 import { document } from './globals/document';
 import addClick from './addClick';
+import { Transaction } from './types/Transaction';
 
 jest.mock('./addTransaction');
 

@@ -1,5 +1,6 @@
 import { document } from './globals/document';
-import addTransaction, { Transaction } from './addTransaction';
+import addTransaction from './addTransaction';
+import { Transaction } from './types/Transaction';
 
 export default function addClick() {
   const transaction: Transaction = {

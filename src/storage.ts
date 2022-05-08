@@ -1,4 +1,4 @@
-import { Transaction } from './addTransaction';
+import { Transaction } from './types/Transaction';
 import { window } from './globals/window';
 
 export default function storeTransaction(transaction: Transaction) {
