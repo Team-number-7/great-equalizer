@@ -1,5 +1,5 @@
 import { window } from './globals/window';
-import storeTransaction from './storage';
+import Storage from './Storage';
 import { Transaction } from './types/Transaction';
 
 jest.mock('./globals/window', () => ({
@@ -37,7 +37,7 @@ describe('test storage', () => {
     window.localStorage.getItem = mockGetItem;
 
     // Act
-    storeTransaction(expectedTransaction);
+    Storage.storeTransaction(expectedTransaction);
 
     // Assert
     expect(mockGetItem).toBeCalledWith(expectedCounterKey);
@@ -69,7 +69,7 @@ describe('test storage', () => {
     window.localStorage.getItem = mockGetItem;
 
     // Act
-    storeTransaction(expectedTransaction);
+    Storage.storeTransaction(expectedTransaction);
 
     // Assert
     expect(mockGetItem).toBeCalledWith(expectedCounterKey);

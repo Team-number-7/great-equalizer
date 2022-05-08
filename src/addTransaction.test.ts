@@ -1,6 +1,6 @@
 import addTransaction from './addTransaction';
 import { document } from './globals/document';
-import mockStoreTransaction from './storage';
+import MockStorage from './Storage';
 import { Transaction } from './types/Transaction';
 
 const mockInsertAdjacentHTML = jest.fn();
@@ -37,5 +37,5 @@ test('test addTransaction', () => {
   // Assert
   expect(document.querySelector).toBeCalledWith(expectedSelector);
   expect(mockInsertAdjacentHTML).toBeCalledWith(expectedPosition, expectedText);
-  expect(mockStoreTransaction).toBeCalledWith(expectedTransaction);
+  expect(MockStorage.storeTransaction).toBeCalledWith(expectedTransaction);
 });
