@@ -1,5 +1,6 @@
 import addButtonEventListener from './addButtonEventListener';
 import featureToggle, { Features } from './featureToggle';
+import loadData from './loadData';
 
 export default function onload(): void {
   const features: Features = {
@@ -7,4 +8,5 @@ export default function onload(): void {
   };
   featureToggle(features);
   addButtonEventListener();
+  loadData();
 }

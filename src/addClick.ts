@@ -1,6 +1,7 @@
 import { document } from './globals/document';
 import addTransaction from './addTransaction';
 import { Transaction } from './types/Transaction';
+import Storage from './Storage';
 
 export default function addClick() {
   const transaction: Transaction = {
@@ -9,4 +10,5 @@ export default function addClick() {
     value: parseInt((<HTMLInputElement>document.getElementById('value')).value, 10),
   };
   addTransaction(transaction);
+  Storage.storeTransaction(transaction);
 }

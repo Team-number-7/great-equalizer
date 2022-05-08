@@ -140,4 +140,25 @@ describe('test Storage.readTransactions', () => {
     expect(mockGetItem).toBeCalledWith(expectedTransactionKey3);
     expect(mockGetItem).toBeCalledWith(expectedTransactionKeyLast);
   });
+  test('0 records', () => {
+    // Arrange
+    const expectedTransactions: Array<Transaction> = [];
+
+    const expectedCounterKey: string = 'counter';
+    const expectedCounterValue: string = null;
+
+    const mockGetItem = jest
+      .fn()
+      .mockReturnValue('default')
+      .mockReturnValueOnce(expectedCounterValue);
+
+    window.localStorage.getItem = mockGetItem;
+
+    // Act
+    const actualTransactions: Array<Transaction> = Storage.readTransactions();
+
+    // Assert
+    expect(actualTransactions).toEqual(expectedTransactions);
+    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
+  });
 });

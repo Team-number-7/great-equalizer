@@ -2,9 +2,10 @@ import mockAddTransaction from './addTransaction';
 import { document } from './globals/document';
 import addClick from './addClick';
 import { Transaction } from './types/Transaction';
+import MockStorage from './Storage';
 
 jest.mock('./addTransaction');
-
+jest.mock('./Storage');
 jest.mock('./globals/document', () => ({
   document: {
     getElementById: jest.fn(),
@@ -55,4 +56,5 @@ test('test addTransaction', () => {
   expect(mockGetElementById).toBeCalledWith(expectedNameId);
   expect(mockGetElementById).toBeCalledWith(expectedValueId);
   expect(mockAddTransaction).toBeCalledWith(expectedTransaction);
+  expect(MockStorage.storeTransaction).toBeCalledWith(expectedTransaction);
 });
