@@ -10,38 +10,70 @@ jest.mock('./globals/window', () => ({
     },
   },
 }));
+describe('test storage', () => {
+  test('happy path', () => {
+    // Arrange
+    const expectedDate = new Date('2022-05-01');
+    const expectedName = 'Пиросмани';
+    const expectedValue = 70;
 
-test('test storage', () => {
-  // Arrange
-  const expectedDate = new Date('2022-05-01');
-  const expectedName = 'Пиросмани';
-  const expectedValue = 70;
+    const expectedTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
 
-  const expectedTransaction: Transaction = {
-    date: expectedDate,
-    name: expectedName,
-    value: expectedValue,
-  };
+    const expectedPreviousCount: number = 2;
+    const expectedNextCount: number = expectedPreviousCount + 1;
+    const expectedCounterKey: string = 'counter';
+    const expectedTransactionValue: string = JSON.stringify(expectedTransaction);
+    const expectedCounterValue: string = `${expectedNextCount}`;
 
-  const expectedPreviousCount: number = 2;
-  const expectedNextCount: number = expectedPreviousCount + 1;
-  const expectedCounterKey: string = 'counter';
-  const expectedKey: string = `${expectedNextCount}`;
-  const expectedTransactionValue: string = JSON.stringify(expectedTransaction);
-  const expectedCounterValue: string = `${expectedNextCount}`;
+    const mockGetItem = jest.fn()
+      .mockReturnValue(`${expectedPreviousCount}`);
+    const mockSetItem = jest.fn();
 
-  const mockGetItem = jest.fn()
-    .mockReturnValue(`${expectedPreviousCount}`);
-  const mockSetItem = jest.fn();
+    window.localStorage.setItem = mockSetItem;
+    window.localStorage.getItem = mockGetItem;
 
-  window.localStorage.setItem = mockSetItem;
-  window.localStorage.getItem = mockGetItem;
+    // Act
+    storeTransaction(expectedTransaction);
 
-  // Act
-  storeTransaction(expectedTransaction);
+    // Assert
+    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
+    expect(mockSetItem).toBeCalledWith(expectedCounterValue, expectedTransactionValue);
+    expect(mockSetItem).toBeCalledWith(expectedCounterKey, expectedCounterValue);
+  });
+  test('no counter', () => {
+    // Arrange
+    const expectedDate = new Date('2022-05-01');
+    const expectedName = 'Пиросмани';
+    const expectedValue = 70;
 
-  // Assert
-  expect(mockGetItem).toBeCalledWith(expectedCounterKey);
-  expect(mockSetItem).toBeCalledWith(expectedKey, expectedTransactionValue);
-  expect(mockSetItem).toBeCalledWith(expectedCounterKey, expectedCounterValue);
+    const expectedTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+
+    const expectedNextCount: number = 0;
+    const expectedCounterKey: string = 'counter';
+    const expectedTransactionValue: string = JSON.stringify(expectedTransaction);
+    const expectedCounterValue: string = `${expectedNextCount}`;
+
+    const mockGetItem = jest.fn()
+      .mockReturnValue(null);
+    const mockSetItem = jest.fn();
+
+    window.localStorage.setItem = mockSetItem;
+    window.localStorage.getItem = mockGetItem;
+
+    // Act
+    storeTransaction(expectedTransaction);
+
+    // Assert
+    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
+    expect(mockSetItem).toBeCalledWith(expectedCounterValue, expectedTransactionValue);
+    expect(mockSetItem).toBeCalledWith(expectedCounterKey, expectedCounterValue);
+  });
 });
