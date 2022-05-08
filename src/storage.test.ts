@@ -10,7 +10,7 @@ jest.mock('./globals/window', () => ({
     },
   },
 }));
-describe('test storage', () => {
+describe('test Storage.storeTransaction', () => {
   test('happy path', () => {
     // Arrange
     const expectedDate = new Date('2022-05-01');
@@ -75,5 +75,69 @@ describe('test storage', () => {
     expect(mockGetItem).toBeCalledWith(expectedCounterKey);
     expect(mockSetItem).toBeCalledWith(expectedCounterValue, expectedTransactionValue);
     expect(mockSetItem).toBeCalledWith(expectedCounterKey, expectedCounterValue);
+  });
+});
+
+describe('test Storage.readTransactions', () => {
+  test('four records', () => {
+    // Arrange
+    const expectedDate = new Date('2022-05-01');
+    const expectedName = 'Пиросмани';
+    const expectedValue = 70;
+
+    const expectedTransaction1: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedTransaction2: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedTransaction3: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedTransaction4: Transaction = {
+      date: expectedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedTransactions: Array<Transaction> = [
+      expectedTransaction1,
+      expectedTransaction2,
+      expectedTransaction3,
+      expectedTransaction4,
+    ];
+
+    const expectedCounterKey: string = 'counter';
+    const expectedTransactionKey1: string = `${0}`;
+    const expectedTransactionKey2: string = `${1}`;
+    const expectedTransactionKey3: string = `${2}`;
+    const expectedTransactionKeyLast: string = `${3}`;
+
+    const mockGetItem = jest
+      .fn()
+      .mockReturnValue('default')
+      .mockReturnValueOnce(expectedTransactionKeyLast)
+      .mockReturnValueOnce(JSON.stringify(expectedTransaction1))
+      .mockReturnValueOnce(JSON.stringify(expectedTransaction2))
+      .mockReturnValueOnce(JSON.stringify(expectedTransaction3))
+      .mockReturnValueOnce(JSON.stringify(expectedTransaction4));
+
+    window.localStorage.getItem = mockGetItem;
+
+    // Act
+    const actualTransactions: Array<Transaction> = Storage.readTransactions();
+
+    // Assert
+    expect(actualTransactions).toEqual(expectedTransactions);
+    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
+    expect(mockGetItem).toBeCalledWith(expectedTransactionKey1);
+    expect(mockGetItem).toBeCalledWith(expectedTransactionKey2);
+    expect(mockGetItem).toBeCalledWith(expectedTransactionKey3);
+    expect(mockGetItem).toBeCalledWith(expectedTransactionKeyLast);
   });
 });
