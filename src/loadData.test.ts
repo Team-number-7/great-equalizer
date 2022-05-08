@@ -1,10 +1,10 @@
 import mockAddTransaction from './addTransaction';
 import { Transaction } from './types/Transaction';
-import MockStorage from './Storage';
+import MockStorage from './storage';
 import loadData from './loadData';
 
 jest.mock('./addTransaction');
-jest.mock('./Storage');
+jest.mock('./storage');
 
 test('test loadData', () => {
   // Arrange

@@ -1,7 +1,7 @@
 import { document } from './globals/document';
 import addTransaction from './addTransaction';
 import { Transaction } from './types/Transaction';
-import Storage from './Storage';
+import Storage from './storage';
 
 export default function addClick() {
   const transaction: Transaction = {

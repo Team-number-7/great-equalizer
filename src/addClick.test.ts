@@ -2,10 +2,10 @@ import mockAddTransaction from './addTransaction';
 import { document } from './globals/document';
 import addClick from './addClick';
 import { Transaction } from './types/Transaction';
-import MockStorage from './Storage';
+import MockStorage from './storage';
 
 jest.mock('./addTransaction');
-jest.mock('./Storage');
+jest.mock('./storage');
 jest.mock('./globals/document', () => ({
   document: {
     getElementById: jest.fn(),

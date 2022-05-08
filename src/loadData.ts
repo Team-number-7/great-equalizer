@@ -1,5 +1,5 @@
 import addTransaction from './addTransaction';
-import Storage from './Storage';
+import Storage from './storage';
 
 export default function loadData() {
   const transactions = Storage.readTransactions();

@@ -1,5 +1,5 @@
 import { window } from './globals/window';
-import Storage from './Storage';
+import Storage from './storage';
 import { Transaction } from './types/Transaction';
 
 jest.mock('./globals/window', () => ({
