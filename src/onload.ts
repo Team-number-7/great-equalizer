@@ -1,4 +1,3 @@
-import addButtonEventListener from './addButtonEventListener';
 import featureToggle, { Features } from './featureToggle';
 import loadData from './loadData';
 
@@ -7,6 +6,5 @@ export default function onload(): void {
     isUserName: true,
   };
   featureToggle(features);
-  addButtonEventListener();
   loadData();
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IDatesTransactionProps {
+export interface IDatesTransactionProps {
   name: string;
   value: number;
 }

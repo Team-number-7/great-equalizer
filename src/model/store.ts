@@ -4,23 +4,13 @@ import addTransactionReducer from './reducers';
 
 export const addTransaction = createEvent<Transaction>();
 
-const initialState = [
-  {
-    date: new Date('11.01.22'),
-    transactions: [
-      {
-        name: 'Pyat',
-        value: 567,
-      },
-    ],
-  },
-];
+const initialState = [];
 
 const $store = createStore(initialState)
   .on(addTransaction, addTransactionReducer);
 
-$store.watch((state) => {
-  console.log('store', state);
-});
+// $store.watch((state) => {
+//   console.log('store', state);
+// });
 
 export default $store;

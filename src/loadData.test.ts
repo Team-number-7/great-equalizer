@@ -1,9 +1,7 @@
-import mockAddTransaction from './addTransaction';
 import { Transaction } from './types/Transaction';
 import MockStorage from './storage';
 import loadData from './loadData';
 
-jest.mock('./addTransaction');
 jest.mock('./storage');
 
 test('test loadData', () => {
@@ -37,6 +35,4 @@ test('test loadData', () => {
 
   // Assert
   expect(MockStorage.readTransactions).toBeCalled();
-  expect(mockAddTransaction).toBeCalledWith(expectedTransaction1);
-  expect(mockAddTransaction).toBeCalledWith(expectedTransaction2);
 });

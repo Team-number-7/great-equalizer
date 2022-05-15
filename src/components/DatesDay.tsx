@@ -1,18 +1,15 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
-import DatesTransaction from './DatesTransaction';
+import React from 'react';
+import DatesTransaction, { IDatesTransactionProps } from './DatesTransaction';
 
 interface IDatesDayProps {
   date: string;
-  name: string;
-  value: number;
+  transactions: Array<IDatesTransactionProps>;
 }
 
 function DatesDay(props: IDatesDayProps) {
   const { date } = props;
-  const { name } = props;
-  const { value } = props;
-  const [transactions, setTransactions] = useState([{ name, value }]);
+  const { transactions } = props;
 
   return (
     <li id="transaction" className="dates__day">
@@ -22,9 +19,6 @@ function DatesDay(props: IDatesDayProps) {
           <DatesTransaction key={index} name={currentValue.name} value={currentValue.value} />
         ))}
       </ul>
-      <button type="button" onClick={() => setTransactions([...transactions, { name: 'Perekrestok', value: 763 }])}>
-        Add Transaction
-      </button>
     </li>
   );
 }
