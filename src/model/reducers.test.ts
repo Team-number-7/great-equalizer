@@ -1,6 +1,6 @@
 import IDay from '../types/IDay';
 import { Transaction } from '../types/Transaction';
-import addTransaction from './reducers';
+import addTransactionReducer from './reducers';
 
 describe('addTransaction', () => {
   test('test addTransaction with different date', () => {
@@ -16,12 +16,22 @@ describe('addTransaction', () => {
     };
 
     const expectedDate = new Date('2022-05-01');
+    const expectedSecondDate = new Date('2022-04-01');
     const expectedName = 'Pyat';
     const expectedValue = 567;
 
     const expectedState: Array<IDay> = [
       {
         date: expectedDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
+      {
+        date: expectedSecondDate,
         transactions: [
           {
             name: expectedName,
@@ -42,6 +52,15 @@ describe('addTransaction', () => {
         ],
       },
       {
+        date: expectedSecondDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
+      {
         date: expectedNewDate,
         transactions: [
           {
@@ -53,7 +72,7 @@ describe('addTransaction', () => {
     ];
 
     // Act
-    const actualNewState: Array<IDay> = addTransaction(expectedState, expectedTransaction);
+    const actualNewState: Array<IDay> = addTransactionReducer(expectedState, expectedTransaction);
     // Assert
     expect(actualNewState).not.toBe(expectedState);
     expect(actualNewState).toEqual(expectedNewState);
@@ -64,6 +83,7 @@ describe('addTransaction', () => {
     const expectedNewName = 'Пиросмани';
     const expectedNewValue = 70;
     const expectedDate = new Date('2022-05-01');
+    const expectedSecondDate = new Date('2022-04-01');
 
     const expectedTransaction: Transaction = {
       date: expectedDate,
@@ -84,6 +104,15 @@ describe('addTransaction', () => {
           },
         ],
       },
+      {
+        date: expectedSecondDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
     ];
 
     const expectedNewState: Array<IDay> = [
@@ -100,10 +129,19 @@ describe('addTransaction', () => {
           },
         ],
       },
+      {
+        date: expectedSecondDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
     ];
 
     // Act
-    const actualNewState: Array<IDay> = addTransaction(expectedState, expectedTransaction);
+    const actualNewState: Array<IDay> = addTransactionReducer(expectedState, expectedTransaction);
     // Assert
     expect(actualNewState).not.toBe(expectedState);
     expect(actualNewState).toEqual(expectedNewState);
