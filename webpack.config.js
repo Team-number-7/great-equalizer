@@ -9,7 +9,7 @@ module.exports = {
     title: 'Custom template using Handlebars',
     template: 'src/index.ejs'
   })],
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
