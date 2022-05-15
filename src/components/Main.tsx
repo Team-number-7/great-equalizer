@@ -1,4 +1,5 @@
 import React from 'react';
+import DatesDay from './DatesDay';
 
 function Main() {
   return (
@@ -12,30 +13,10 @@ function Main() {
         <input id="add" className="form__input-submit" type="button" value="Add" />
       </form>
       <ul className="dates">
-        <li id="transaction" className="dates__day">
-          <div className="dates__date">27.12.2021</div>
-          <ul className="dates__details">
-            <li className="dates__transaction">
-              <span className="dates__transaction-text">шестерочка</span>
-              <span className="dates__transaction-number">588</span>
-            </li>
-            <li className="dates__transaction">
-              <span className="dates__transaction-text">шестерочка</span>
-              <span className="dates__transaction-number">588</span>
-            </li>
-            <li className="dates__transaction">
-              <span className="dates__transaction-text">пятерочка</span>
-              <span className="dates__transaction-number">588</span>
-            </li>
-          </ul>
-        </li>
+        <DatesDay date="11.02.22" name="Pyaterochka" value={676} />
         <li className="dates__day">
           <div className="dates__date">26.12.2021</div>
           <ul className="dates__details">
-            <li className="dates__transaction">
-              <span className="dates__transaction-text">пятерочка</span>
-              <span className="dates__transaction-number">588</span>
-            </li>
             <li className="dates__transaction">
               <span className="dates__transaction-text">пятерочка</span>
               <span className="dates__transaction-number">588</span>
