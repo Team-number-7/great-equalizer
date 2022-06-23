@@ -30,3 +30,18 @@ export default function addTransactionReducer(state, newTransaction): Array<IDay
   }
   return newState;
 }
+
+export function loadTransactions(state, transactions): Array<IDay> {
+  const newState: Array<IDay> = [];
+  newState.push({
+    date: transactions[0].date,
+    transactions: [],
+  });
+  for (let i = 0; i < transactions.length; i += 1) {
+    newState[0].transactions.push({
+      name: transactions[i].name,
+      value: transactions[i].value,
+    });
+  }
+  return newState;
+}

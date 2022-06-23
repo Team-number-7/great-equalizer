@@ -1,6 +1,6 @@
 import IDay from '../types/IDay';
 import { Transaction } from '../types/Transaction';
-import addTransactionReducer from './reducers';
+import addTransactionReducer, { loadTransactions } from './reducers';
 
 describe('addTransaction', () => {
   test('test addTransaction with different date', () => {
@@ -142,6 +142,67 @@ describe('addTransaction', () => {
 
     // Act
     const actualNewState: Array<IDay> = addTransactionReducer(expectedState, expectedTransaction);
+    // Assert
+    expect(actualNewState).not.toBe(expectedState);
+    expect(actualNewState).toEqual(expectedNewState);
+  });
+});
+
+describe('loadTransactions', () => {
+  test('same date transactions', () => {
+    // Arrange
+    const expectedNewName = 'Пиросмани';
+    const expectedNewValue = 70;
+    const expectedDate = new Date('2022-05-01');
+
+    const expectedFirstTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedSecondTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedThirdTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedTransactions = [
+      expectedFirstTransaction,
+      expectedSecondTransaction,
+      expectedThirdTransaction,
+    ];
+
+    const expectedState: Array<IDay> = [];
+
+    const expectedNewState: Array<IDay> = [
+      {
+        date: expectedDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+    ];
+
+    // Act
+    const actualNewState: Array<IDay> = loadTransactions(expectedState, expectedTransactions);
     // Assert
     expect(actualNewState).not.toBe(expectedState);
     expect(actualNewState).toEqual(expectedNewState);
