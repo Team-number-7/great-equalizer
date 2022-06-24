@@ -207,4 +207,159 @@ describe('loadTransactions', () => {
     expect(actualNewState).not.toBe(expectedState);
     expect(actualNewState).toEqual(expectedNewState);
   });
+
+  test('different dates transacitons', () => {
+    // Arrange
+    const expectedNewName = 'Пиросмани';
+    const expectedNewValue = 70;
+    const expectedFirstDate = new Date('2022-05-01');
+    const expectedSecondDate = new Date('2022-05-02');
+    const expectedThirdDate = new Date('2022-05-03');
+
+    const expectedFirstTransaction: Transaction = {
+      date: expectedFirstDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedSecondTransaction: Transaction = {
+      date: expectedSecondDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedThirdTransaction: Transaction = {
+      date: expectedThirdDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedTransactions = [
+      expectedFirstTransaction,
+      expectedSecondTransaction,
+      expectedThirdTransaction,
+    ];
+
+    const expectedState: Array<IDay> = [];
+
+    const expectedNewState: Array<IDay> = [
+      {
+        date: expectedFirstDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+      {
+        date: expectedSecondDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+      {
+        date: expectedThirdDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+    ];
+
+    // Act
+    const actualNewState: Array<IDay> = loadTransactions(expectedState, expectedTransactions);
+
+    // Assert
+    expect(actualNewState).not.toBe(expectedState);
+    expect(actualNewState).toEqual(expectedNewState);
+  });
+  test('same date separated transactions', () => {
+    // Arrange
+    const expectedNewName = 'Пиросмани';
+    const expectedNewValue = 70;
+    const expectedFirstDate = new Date('2022-05-01');
+    const expectedDate = new Date('2022-05-02');
+    const expectedThirdDate = new Date('2022-05-03');
+
+    const expectedFirstTransaction: Transaction = {
+      date: expectedFirstDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedSecondTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedThirdTransaction: Transaction = {
+      date: expectedThirdDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedFourthTransaction: Transaction = {
+      date: expectedDate,
+      name: expectedNewName,
+      value: expectedNewValue,
+    };
+
+    const expectedTransactions = [
+      expectedFirstTransaction,
+      expectedSecondTransaction,
+      expectedThirdTransaction,
+      expectedFourthTransaction,
+    ];
+
+    const expectedState: Array<IDay> = [];
+
+    const expectedNewState: Array<IDay> = [
+      {
+        date: expectedFirstDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+      {
+        date: expectedDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+      {
+        date: expectedThirdDate,
+        transactions: [
+          {
+            name: expectedNewName,
+            value: expectedNewValue,
+          },
+        ],
+      },
+    ];
+
+    // Act
+
+    const actualNewState: Array<IDay> = loadTransactions(expectedState, expectedTransactions);
+    // Assert
+
+    expect(actualNewState).not.toBe(expectedState);
+    expect(actualNewState).toEqual(expectedNewState);
+  });
 });
