@@ -45,7 +45,8 @@ export function loadTransactions(
     }],
   });
   for (let i = 1; i < transactions.length; i += 1) {
-    const sameDateItem = newState.find((el) => el.date === transactions[i].date);
+    const sameDateItem = newState
+      .find((el) => el.date.toDateString() === transactions[i].date.toDateString());
     if (sameDateItem) {
       sameDateItem.transactions.push({
         name: transactions[i].name,
@@ -54,10 +55,12 @@ export function loadTransactions(
     } else {
       newState.push({
         date: transactions[i].date,
-        transactions: [{
-          name: transactions[i].name,
-          value: transactions[i].value,
-        }],
+        transactions: [
+          {
+            name: transactions[i].name,
+            value: transactions[i].value,
+          },
+        ],
       });
     }
   }

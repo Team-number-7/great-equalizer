@@ -31,8 +31,9 @@ test('test loadData', () => {
     .mockReturnValue(expectedTransactions);
 
   // Act
-  loadData();
+  const actualTransactions = loadData();
 
   // Assert
   expect(MockStorage.readTransactions).toBeCalled();
+  expect(actualTransactions).toEqual(expectedTransactions);
 });

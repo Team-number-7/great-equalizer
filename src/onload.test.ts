@@ -10,6 +10,7 @@ test('test onload', () => {
   const expectedFeatures: Features = {
     isUserName: true,
   };
+
   // Act
   onload();
 
