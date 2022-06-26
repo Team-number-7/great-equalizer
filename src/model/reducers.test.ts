@@ -82,11 +82,12 @@ describe('addTransaction', () => {
     // Arrange
     const expectedNewName = 'Пиросмани';
     const expectedNewValue = 70;
-    const expectedDate = new Date('2022-05-01');
+    const expectedFirstDate = new Date('2022-05-01');
     const expectedSecondDate = new Date('2022-04-01');
+    const expectedThirdDate = new Date('2022-04-01');
 
     const expectedTransaction: Transaction = {
-      date: expectedDate,
+      date: expectedSecondDate,
       name: expectedNewName,
       value: expectedNewValue,
     };
@@ -96,7 +97,7 @@ describe('addTransaction', () => {
 
     const expectedState: Array<IDay> = [
       {
-        date: expectedDate,
+        date: expectedFirstDate,
         transactions: [
           {
             name: expectedName,
@@ -113,11 +114,29 @@ describe('addTransaction', () => {
           },
         ],
       },
+      {
+        date: expectedThirdDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
     ];
 
     const expectedNewState: Array<IDay> = [
       {
-        date: expectedDate,
+        date: expectedFirstDate,
+        transactions: [
+          {
+            name: expectedName,
+            value: expectedValue,
+          },
+        ],
+      },
+      {
+        date: expectedSecondDate,
         transactions: [
           {
             name: expectedName,
@@ -130,7 +149,7 @@ describe('addTransaction', () => {
         ],
       },
       {
-        date: expectedSecondDate,
+        date: expectedThirdDate,
         transactions: [
           {
             name: expectedName,

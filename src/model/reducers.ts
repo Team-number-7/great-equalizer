@@ -7,7 +7,7 @@ export default function addTransactionReducer(state, newTransaction): Array<IDay
   let sameDateIndex = 0;
 
   for (let i = 0; i < state.length; i += 1) {
-    if (newTransaction.date === state[i].date) {
+    if (newTransaction.date.toDateString() === state[i].date.toDateString()) {
       isSameDate = true;
       sameDateIndex = i;
     }
