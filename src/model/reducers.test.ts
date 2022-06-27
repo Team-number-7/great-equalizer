@@ -84,7 +84,7 @@ describe('addTransaction', () => {
     const expectedNewValue = 70;
     const expectedFirstDate = new Date('2022-05-01');
     const expectedSecondDate = new Date('2022-04-01');
-    const expectedThirdDate = new Date('2022-04-01');
+    const expectedThirdDate = new Date('2022-04-02');
 
     const expectedTransaction: Transaction = {
       date: expectedSecondDate,
