@@ -1,4 +1,4 @@
-import Storage from './storage';
+import Storage from './Storage';
 
 export default function loadData() {
   const transactions = Storage.readTransactions();

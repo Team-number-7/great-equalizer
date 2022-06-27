@@ -1,5 +1,5 @@
 import { Transaction } from './types/Transaction';
-import MockStorage from './storage';
+import MockStorage from './Storage';
 import loadData from './loadData';
 
 jest.mock('./storage');

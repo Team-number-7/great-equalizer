@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Transaction } from '../types/Transaction';
 import { addTransaction } from '../model/store';
+import Storage from '../Storage';
 
 export default function TransactionForm() {
   const [date, setDate] = useState(new Date());
@@ -17,14 +18,16 @@ export default function TransactionForm() {
     setValue(event.target.value);
   };
 
+  const transaction: Transaction = {
+    date,
+    name,
+    value,
+  };
+
   const handleSubmit = (event) => {
-    const transaction: Transaction = {
-      name,
-      date,
-      value,
-    };
     event.preventDefault();
     addTransaction(transaction);
+    Storage.storeTransaction(transaction);
   };
 
   return (
