@@ -2,7 +2,7 @@ import { Transaction } from './types/Transaction';
 import MockStorage from './Storage';
 import loadData from './loadData';
 
-jest.mock('./storage');
+jest.mock('./Storage');
 
 test('test loadData', () => {
   // Arrange
