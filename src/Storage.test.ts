@@ -1,6 +1,8 @@
 import { window } from './globals/window';
 import Storage from './Storage';
 import { Transaction } from './types/Transaction';
+import MockFetch from './Fetch';
+import { FetchedTransaction } from './types/IFetchedTransaction';
 
 jest.mock('./globals/window', () => ({
   window: {
@@ -10,6 +12,9 @@ jest.mock('./globals/window', () => ({
     },
   },
 }));
+
+jest.mock('./Fetch');
+
 describe('test Storage.storeTransaction', () => {
   test('happy path', () => {
     // Arrange
@@ -79,9 +84,10 @@ describe('test Storage.storeTransaction', () => {
 });
 
 describe('test Storage.readTransactions', () => {
-  test('four records', () => {
+  test('two records', async () => {
     // Arrange
-    const expectedDate = new Date('2022-05-01');
+    const expectedFetchedDate: string = '2022-05-01';
+    const expectedDate = new Date(expectedFetchedDate);
     const expectedName = 'Пиросмани';
     const expectedValue = 70;
 
@@ -95,70 +101,49 @@ describe('test Storage.readTransactions', () => {
       name: expectedName,
       value: expectedValue,
     };
-    const expectedTransaction3: Transaction = {
-      date: expectedDate,
-      name: expectedName,
-      value: expectedValue,
-    };
-    const expectedTransaction4: Transaction = {
-      date: expectedDate,
-      name: expectedName,
-      value: expectedValue,
-    };
     const expectedTransactions: Array<Transaction> = [
       expectedTransaction1,
       expectedTransaction2,
-      expectedTransaction3,
-      expectedTransaction4,
     ];
 
-    const expectedCounterKey: string = 'counter';
-    const expectedTransactionKey1: string = `${0}`;
-    const expectedTransactionKey2: string = `${1}`;
-    const expectedTransactionKey3: string = `${2}`;
-    const expectedTransactionKeyLast: string = `${3}`;
+    const expectedFetchedTransaction1: FetchedTransaction = {
+      date: expectedFetchedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedFetchedTransaction2: FetchedTransaction = {
+      date: expectedFetchedDate,
+      name: expectedName,
+      value: expectedValue,
+    };
+    const expectedFetchedTransactions: Array<FetchedTransaction> = [
+      expectedFetchedTransaction1,
+      expectedFetchedTransaction2,
+    ];
 
-    const mockGetItem = jest
-      .fn()
-      .mockReturnValue('default')
-      .mockReturnValueOnce(expectedTransactionKeyLast)
-      .mockReturnValueOnce(JSON.stringify(expectedTransaction1))
-      .mockReturnValueOnce(JSON.stringify(expectedTransaction2))
-      .mockReturnValueOnce(JSON.stringify(expectedTransaction3))
-      .mockReturnValueOnce(JSON.stringify(expectedTransaction4));
-
-    window.localStorage.getItem = mockGetItem;
+    MockFetch.getTransactions = jest
+      .fn(async () => expectedFetchedTransactions);
 
     // Act
-    const actualTransactions: Array<Transaction> = Storage.readTransactions();
+    const actualTransactions: Array<Transaction> = await Storage.readTransactions();
 
     // Assert
     expect(actualTransactions).toEqual(expectedTransactions);
-    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
-    expect(mockGetItem).toBeCalledWith(expectedTransactionKey1);
-    expect(mockGetItem).toBeCalledWith(expectedTransactionKey2);
-    expect(mockGetItem).toBeCalledWith(expectedTransactionKey3);
-    expect(mockGetItem).toBeCalledWith(expectedTransactionKeyLast);
+    expect(MockFetch.getTransactions).toBeCalled();
   });
-  test('0 records', () => {
+  test('0 records', async () => {
     // Arrange
     const expectedTransactions: Array<Transaction> = [];
 
-    const expectedCounterKey: string = 'counter';
-    const expectedCounterValue: string = null;
-
-    const mockGetItem = jest
+    MockFetch.getTransactions = jest
       .fn()
-      .mockReturnValue('default')
-      .mockReturnValueOnce(expectedCounterValue);
-
-    window.localStorage.getItem = mockGetItem;
+      .mockReturnValue(expectedTransactions);
 
     // Act
-    const actualTransactions: Array<Transaction> = Storage.readTransactions();
+    const actualTransactions: Array<Transaction> = await Storage.readTransactions();
 
     // Assert
     expect(actualTransactions).toEqual(expectedTransactions);
-    expect(mockGetItem).toBeCalledWith(expectedCounterKey);
+    expect(MockFetch.getTransactions).toBeCalled();
   });
 });

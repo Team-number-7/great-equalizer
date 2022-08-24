@@ -5,14 +5,14 @@ import mockLoadData from './loadData';
 jest.mock('./featureToggle');
 jest.mock('./loadData');
 
-test('test onload', () => {
+test('test onload', async () => {
   // Arrange
   const expectedFeatures: Features = {
     isUserName: true,
   };
 
   // Act
-  onload();
+  await onload();
 
   // Assert
   expect(mockFeatureToggle).toBeCalledWith(expectedFeatures);

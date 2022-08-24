@@ -34,8 +34,8 @@ describe('fetching data', () => {
         expectedTransaction2,
       ];
 
-      const mockFetch = jest.fn()
-        .mockReturnValueOnce({ json: async () => expectedData });
+      const mockResponse: Partial<Response> = { json: async () => expectedData };
+      const mockFetch = jest.fn(async () => mockResponse as Response);
 
       global.fetch = mockFetch;
 

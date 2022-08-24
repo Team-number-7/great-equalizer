@@ -1,5 +1,5 @@
-export interface Transaction {
+import { AbstractTransaction } from './IAbstractTransaction';
+
+export interface Transaction extends AbstractTransaction {
   date: Date;
-  name: string;
-  value: number;
 }

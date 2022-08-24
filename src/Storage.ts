@@ -1,5 +1,7 @@
 import { Transaction } from './types/Transaction';
 import { window } from './globals/window';
+import Fetch from './Fetch';
+import { FetchedTransaction } from './types/IFetchedTransaction';
 
 class Storage {
   static storeTransaction(transaction: Transaction) {
@@ -9,14 +11,14 @@ class Storage {
     window.localStorage.setItem('counter', `${counter}`);
   }
 
-  static readTransactions(): Array<Transaction> {
-    const counter: number = parseInt(window.localStorage.getItem('counter'), 10);
-    const transactions: Array<Transaction> = [];
-    for (let i: number = 0; i <= counter; i += 1) {
-      const transaction = JSON.parse(window.localStorage.getItem(`${i}`));
-      transaction.date = new Date(transaction.date);
-      transactions.push(transaction);
-    }
+  static async readTransactions(): Promise<Array<Transaction>> {
+    const fetchedTransactions: Array<FetchedTransaction> = await Fetch.getTransactions();
+
+    const transactions: Array<Transaction> = fetchedTransactions.map((transaction) => ({
+      date: new Date(transaction.date),
+      name: transaction.name,
+      value: transaction.value,
+    }));
     return transactions;
   }
 }
