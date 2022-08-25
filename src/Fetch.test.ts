@@ -61,7 +61,11 @@ describe('fetching data', () => {
         value: expectedValue,
       };
 
-      const expectedOptions = { method: 'POST', body: JSON.stringify(expectedTransaction) };
+      const expectedOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(expectedTransaction),
+      };
 
       const mockResponse: Partial<Response> = { };
       const mockFetch = jest.fn(async () => mockResponse as Response);

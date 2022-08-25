@@ -24,10 +24,10 @@ export default function TransactionForm() {
     value,
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     addTransaction(transaction);
-    Storage.storeTransaction(transaction);
+    await Storage.storeTransaction(transaction);
   };
 
   return (

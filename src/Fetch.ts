@@ -10,13 +10,13 @@ export default class Fetch {
     const result = await global.fetch(URL, {
       method: 'GET',
     });
-    const data = await result.json();
-    return data;
+    return result.json();
   }
 
   static async postTransaction(transaction: Transaction): Promise<any> {
     await global.fetch(URL, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(transaction),
     });
   }
