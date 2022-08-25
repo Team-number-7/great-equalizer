@@ -1,5 +1,5 @@
 import { global } from './globals/global';
-import Fetch from './Fetch';
+import Fetch, { URL } from './Fetch';
 import { Transaction } from './types/Transaction';
 
 jest.mock('./globals/global', () => ({
@@ -15,7 +15,7 @@ describe('fetching data', () => {
       const expectedDate = new Date('2022-05-01');
       const expectedName = 'Пиросмани';
       const expectedValue = 70;
-      const expectedPath = 'http://web-lb-247099307.us-east-1.elb.amazonaws.com/transactions';
+      const expectedPath = URL;
       const expectedOptions = { method: 'GET' };
 
       const expectedTransaction1: Transaction = {
@@ -45,6 +45,32 @@ describe('fetching data', () => {
       // Assert
       expect(actualData).toEqual(expectedData);
       expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toBeCalledWith(expectedPath, expectedOptions);
+    });
+  });
+  describe('posting data', () => {
+    test('happy path', async () => {
+      // Arrange
+      const expectedDate = new Date('2022-05-01');
+      const expectedName = 'Пиросмани';
+      const expectedValue = 70;
+      const expectedPath = URL;
+      const expectedTransaction: Transaction = {
+        date: expectedDate,
+        name: expectedName,
+        value: expectedValue,
+      };
+
+      const expectedOptions = { method: 'POST', body: JSON.stringify(expectedTransaction) };
+
+      const mockResponse: Partial<Response> = { };
+      const mockFetch = jest.fn(async () => mockResponse as Response);
+      global.fetch = mockFetch;
+
+      // Act
+      await Fetch.postTransaction(expectedTransaction);
+
+      // Assert
       expect(mockFetch).toBeCalledWith(expectedPath, expectedOptions);
     });
   });
