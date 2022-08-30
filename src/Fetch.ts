@@ -1,7 +1,7 @@
 import { global } from './globals/global';
 import { Transaction } from './types/Transaction';
 
-const BASE_URL = 'http://web-lb-247099307.us-east-1.elb.amazonaws.com';
+const BASE_URL = 'https://api.gequalizer.com';
 const COLLECTION = 'transactions';
 export const URL = `${BASE_URL}/${COLLECTION}`;
 
