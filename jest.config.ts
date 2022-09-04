@@ -67,7 +67,6 @@ export default {
 
   // A set of global variables that need to be available in all test environments
   globals: {
-    global: {},
     'ts-jest': {
       tsconfig: 'tsconfig.test.json',
     },
