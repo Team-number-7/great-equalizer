@@ -6,7 +6,7 @@ orbs:
   # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
   # Orbs reduce the amount of configuration required for common tasks.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
-  node: circleci/node@4.7 
+  node: circleci/node@4.7
   gh-pages: sugarshin/gh-pages@1.0.0
 
 jobs:
@@ -33,9 +33,12 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
-      - run: 
+      - run:
           name: build
           command: npm run build
+      - run:
+          name: CNAME
+          command: echo "gequalizer.com" > ./dist/CNAME
       - gh-pages/deploy:
           setup-git: true
           ssh-fingerprints: e0:11:27:8e:64:fa:26:0a:ee:cf:cd:61:0c:0c:44:81
