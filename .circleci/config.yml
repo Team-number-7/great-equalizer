@@ -8,10 +8,11 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.7
   gh-pages: sugarshin/gh-pages@1.0.0
+  aws-ecr: circleci/aws-ecr@8.1.2
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:
+  test:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
@@ -33,15 +34,20 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
+  build:
+    docker:
+      - image: cimg/node:16.15
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+          override-ci-command: npm install --omit=dev
       - run:
           name: build
           command: npm run build
-      - run:
-          name: CNAME
-          command: echo "gequalizer.com" > ./dist/CNAME
-      - gh-pages/deploy:
-          setup-git: true
-          ssh-fingerprints: e0:11:27:8e:64:fa:26:0a:ee:cf:cd:61:0c:0c:44:81
+      - persist_to_workspace:
+          root: ~/
+          paths: project
 
 workflows:
   # Below is the definition of your workflow.
@@ -50,10 +56,33 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   test-and-deploy:
     jobs:
-      - build-and-test:
+      - test:
           filters:
+            branches:
+              only:
+                - main
+            tags:
+              only: /.*/
+      - build:
+          filters:
+            tags:
+              only: /^\d+.\d+.\d+$/
             branches:
               only:
                 - master
               ignore:
                 - gh-pages
+          requires:
+            - test
+      - aws-ecr/build-and-push-image:
+          attach-workspace: true
+          workspace-root: ~/
+          filters:
+            tags:
+              only: /^\d+.\d+.\d+$/
+            branches:
+              ignore: /.*/
+          requires:
+            - build
+          repo: great-equalizer-frontend
+          tag: "${CIRCLE_TAG}"
