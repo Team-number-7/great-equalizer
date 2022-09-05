@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.2.5",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
@@ -26,10 +27,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "npm run stylelint && npm run eslint",
+    "lint": "npm run stylelint && next lint",
     "stylelint": "npx stylelint \"**/*.css\"",
-    "build": "NODE_ENV=production webpack",
-    "dev": "webpack serve --open",
+    "build": "NODE_ENV=production next build",
+    "dev": "next dev",
+    "start": "next start",
     "eslint": "eslint . --ext .ts ",
     "eslint:fix": "eslint . --ext .ts --fix ",
     "cypress:open": "cypress open"
@@ -54,6 +56,7 @@
     "effector-react": "^22.0.6",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "next": "^12.2.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "ts-loader": "^9.2.8",

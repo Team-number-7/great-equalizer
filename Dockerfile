@@ -1,7 +1,6 @@
-FROM nginx:1.22.0-alpine
+FROM node:16-alpine
 
-COPY dist /opt/gequalizer
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY .next /opt/gequalizer
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "start"]

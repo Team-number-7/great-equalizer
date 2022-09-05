@@ -7,7 +7,7 @@ module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin({
     title: 'Custom template using Handlebars',
-    template: 'src/index.ejs',
+    template: '/index.ejs',
   })],
   entry: './src/index.tsx',
   devtool: 'inline-source-map',
