@@ -90,8 +90,8 @@ workflows:
       - aws-ecs/deploy-service-update:
           cluster-name: 'ge_cluster'
           service-name: 'frontend'
-          container-image-name-updates: 'container=ge_frontend,image-and-tag=491762842334.dkr.ecr.us-east-1.amazonaws.com/great-equalizer-frontend:${CIRCLE_TAG}'
-          family: 'ge_frontend'
+          container-image-name-updates: 'container=frontend,image-and-tag=491762842334.dkr.ecr.us-east-1.amazonaws.com/great-equalizer-frontend:${CIRCLE_TAG}'
+          family: 'frontend'
           requires:
             - aws-ecr/build-and-push-image
           filters:
