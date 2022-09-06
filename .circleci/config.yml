@@ -9,6 +9,7 @@ orbs:
   node: circleci/node@4.7
   gh-pages: sugarshin/gh-pages@1.0.0
   aws-ecr: circleci/aws-ecr@8.1.2
+  aws-ecs: circleci/aws-ecs@2.3.0
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -86,3 +87,15 @@ workflows:
             - build
           repo: great-equalizer-frontend
           tag: "${CIRCLE_TAG}"
+      - aws-ecs/deploy-service-update:
+          cluster-name: 'ge_cluster'
+          service-name: 'frontend'
+          container-image-name-updates: 'container=frontend,image-and-tag=491762842334.dkr.ecr.us-east-1.amazonaws.com/great-equalizer-frontend:${CIRCLE_TAG}'
+          family: 'ge_frontend'
+          requires:
+            - aws-ecr/build-and-push-image
+          filters:
+            tags:
+              only: /^\d+.\d+.\d+$/
+            branches:
+              ignore: /.*/
