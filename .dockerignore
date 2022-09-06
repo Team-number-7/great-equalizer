@@ -1,0 +1,16 @@
+configs
+src
+.editorconfig
+.eslintrc.js
+.gitignore
+jest.config.ts
+cypress.json
+cypress
+.stylintignore
+.stylintrc
+README.md
+tsconfig.eslint.json
+tsconfig.json
+tsconfig.test.json
+.idea
+.git
