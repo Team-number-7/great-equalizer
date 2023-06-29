@@ -45,7 +45,7 @@
   "description": "",
   "dependencies": {
     "@types/node": "^18.7.14",
-    "@types/react": "^18.0.9",
+    "@types/react": "^18.2.9",
     "effector": "^22.3.0",
     "effector-react": "^22.0.6",
     "next": "^12.2.5",
